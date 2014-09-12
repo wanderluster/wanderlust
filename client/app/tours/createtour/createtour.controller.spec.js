@@ -21,4 +21,10 @@ describe('Controller: CreatetourCtrl', function () {
     scope.addSpot();
     expect(scope.spots.length).toEqual(lenBefore+1);
   });
+
+  it('Should set data as invalid if title length is less than four', function(){
+    scope.tour.title = '123';
+    scope.createTour();
+    expect(scope.isValid).toEqual(false);
+  });
 });
