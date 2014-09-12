@@ -41,6 +41,11 @@ angular.module('wanderlustApp', [
       }
     };
   })
+  .factory('toursFactory', function(){
+    var tours = {};
+
+    return tours;
+  })
 
   .run(function ($rootScope, $location, $document, Auth) {
     // Redirect to login if route requires auth and you're not logged in

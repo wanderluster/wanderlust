@@ -43,15 +43,18 @@ angular.module('wanderlustApp')
     }
   })
 
-  .controller('ToursCtrl', function ($scope, $location, $http, httpGET) {
+  .controller('ToursCtrl', function ($scope, $location, $http, httpGET, toursFactory) {
     
     httpGET.getData(function(data){
       $scope.tours = data;
       console.log($scope.tours);
+      toursFactory.tours = data;
+      console.log(toursFactory);
     });
 
     //route to tour on click
-    $scope.selectedTour = function(){
+    $scope.selectedTour = function(self){
         $location.path('/tours/showtour');
+        toursFactory.selectedTour = self;
     };
   });
