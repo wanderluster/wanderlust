@@ -24,3 +24,7 @@
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
   background: #3B797F;
 }
+
+.invalid-input {
+  box-shadow: 0 0 5px red;
+}
