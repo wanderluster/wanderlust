@@ -1,5 +1,7 @@
 # Wanderlust
 
+[![Build Status](https://travis-ci.org/wanderluster/wanderlust.svg)](https://travis-ci.org/wanderluster/wanderlust)
+
 Curate your city’s hidden gems for others to fall in love with.
 Explore your own beloved city through new eyes.
 
