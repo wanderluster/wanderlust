@@ -47,9 +47,7 @@ angular.module('wanderlustApp')
     
     httpGET.getData(function(data){
       $scope.tours = data;
-      console.log($scope.tours);
       toursFactory.tours = data;
-      console.log(toursFactory);
     });
 
     //route to tour on click

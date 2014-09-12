@@ -43,6 +43,7 @@ angular.module('wanderlustApp', [
   })
   .factory('toursFactory', function(){
     var tours = {};
+    tours.selectedTour = 0;
 
     return tours;
   })
