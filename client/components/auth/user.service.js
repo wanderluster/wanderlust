@@ -17,6 +17,12 @@ angular.module('wanderlustApp')
         params: {
           id:'me'
         }
+      },
+      addTour: {
+        method: 'PUT',
+        params: {
+          id:'add'
+        }
       }
     });
   });

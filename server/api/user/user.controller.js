@@ -108,6 +108,23 @@ exports.showTours = function(req, res, next) {
   });
 };
 
+exports.addNewTour = function(req, res, next) {
+  var userId = req.user._id;
+  var tour = req.body.tourObject;
+  User.findByIdAndUpdate(
+    userId,
+    {$push: {"tours": tour}},
+    {safe: true, upsert: true},
+    function(err, model){
+      if(err){
+        console.log(err);
+      }
+      console.log(model);
+      //response will redirect???
+    }
+  );
+}
+
 
 /**
  * Authentication callback
