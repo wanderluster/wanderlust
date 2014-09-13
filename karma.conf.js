@@ -51,7 +51,8 @@ module.exports = function(config) {
       'client/app/tours/tours.js': 'coverage',
       'client/app/tours/createtour.js': 'coverage',
       'client/app/tours/showtour.js': 'coverage',
-      'client/app/app.js': 'coverage'
+      'client/app/app.js': 'coverage',
+      'client/components/geo/geo.service.js': 'coverage'
     },
 
     ngHtml2JsPreprocessor: {
