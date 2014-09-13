@@ -10,11 +10,11 @@ angular.module('wanderlustApp')
   function promisify(functionName, position){
    	var defer = $q.defer();
   	var res = resolver(defer);
-  	var id = loc.functionName(res.success, res.failure, position);
+  	var id = functionName.call(loc, res.success, res.failure, position);
   	if(id !== undefined){
   		watchId.push(id);
   	}
-  	return defer.promise(); 	
+  	return defer.promise; 	
   }
   //Used for resolving promises
   function resolver(deferObject){
@@ -34,7 +34,7 @@ angular.module('wanderlustApp')
   	//Gets the users current position
   	//position param is an optional position object
   	var getUserLocation = function(position){
-  	  return promisify(loc.getCurrentLocation, position);
+  	  return promisify(loc.getCurrentPosition, position);
   	};
 
   	var watchUserPosition = function(position){
