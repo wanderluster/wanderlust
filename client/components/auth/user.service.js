@@ -2,6 +2,8 @@
 
 angular.module('wanderlustApp')
   .factory('User', function ($resource) {
+    // var currentUser = Auth.getCurrentUser();
+    // console.log(currentUser);
     return $resource('/api/users/:id/:controller', {
       id: '@_id'
     },
@@ -21,7 +23,7 @@ angular.module('wanderlustApp')
       addTour: {
         method: 'PUT',
         params: {
-          id:'add'
+          controller:'tours'
         }
       }
     });

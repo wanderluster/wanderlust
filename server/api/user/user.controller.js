@@ -119,8 +119,8 @@ exports.addNewTour = function(req, res, next) {
       if(err){
         console.log(err);
       }
-      console.log(model);
       //response will redirect???
+      res.json(model);
     }
   );
 }

@@ -49,6 +49,66 @@ var tour2 = new Tour({
 //     });
 //   });
 // });
+describe('PUT /api/users/:id/tours', function() {
+  var token;
+  beforeEach(function(done){
+    User.create(traveler).then(function(){
+      request(app)
+        .post('/auth/local')
+        .send({
+          email: 'traveler@123.com',
+          password: 'password'
+        })
+        .expect(200)
+        .end(function(err,res){
+          token = res.body.token;
+          done();
+        })
+    });
+  });
+
+  afterEach(function(done){
+    User.remove().exec().then(function(){
+      Tour.remove().exec().then(function(){
+        done();
+      });
+    });
+  });
+
+  it('should use PUT to add to a user field', function(done){
+    request(app)
+      .put('/api/users/' + traveler._id + '/tours')
+      .set('authorization', 'Bearer ' + token)
+      .send({'tourObject':{'key':'value'}})
+      .expect(200)
+      .end(function(err, res){
+        if(err){
+          console.log(err)
+        }
+        done();
+      });
+  })
+  it('should add an object to the tours array', function(done){
+    request(app)
+      .put('/api/users/' + traveler._id + '/tours')
+      .set('authorization', 'Bearer ' + token)
+      .send({'tourObject':{'key':'value'}})
+      .expect(200)
+      .end(function(err, res){
+        if(err){
+          console.log(err)
+        }
+        var tours = res.body.tours;
+        tours.should.be.a('array');
+        tours.length.should.equal(1);
+        var testTour = tours[0];
+        testTour.key.should.equal('value');
+        done();
+      });
+  });
+
+});
+
 
 describe('GET /api/user/:id/tours', function(){
   var token;
