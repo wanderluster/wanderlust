@@ -6,12 +6,12 @@ echo "   CheckHostIP no" >> ~/.ssh/config;
 echo "   UserKnownHostsFile=/dev/null" >> ~/.ssh/config;
 if [[ $TRAVIS_PULL_REQUEST == "false" && $TRAVIS_BRANCH == "master" ]]
   then 
-    echo gem install heroku
-    echo heroku keys:clear
+    gem install heroku
+    heroku keys:clear
     echo yes | heroku keys:add
-    echo grunt build
+    grunt build
     echo yes | grunt buildcontrol:heroku
-    echo heroku keys:clear
+    heroku keys:clear
 fi
 if [[ $TRAVIS_PULL_REQUEST == "false" ]]
   then
