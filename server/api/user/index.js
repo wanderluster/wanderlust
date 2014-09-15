@@ -15,4 +15,9 @@ router.get('/:id', auth.isAuthenticated(), controller.show);
 router.post('/', controller.create);
 router.get('/:id/tours', auth.isAuthenticated(), controller.showTours);
 router.put('/:id/tours', auth.isAuthenticated(), controller.addNewTour);
+router.get('/:id/trackedtours', auth.isAuthenticated(), controller.trackedTours)
+router.get('/:id/createdtours', auth.isAuthenticated(), controller.showTours)
+router.get('/:id/score', auth.isAuthenticated(), controller.me)
+
+router.get('/:id/username', auth.isAuthenticated(), controller.me);
 module.exports = router;

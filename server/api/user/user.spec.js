@@ -49,6 +49,93 @@ var tour2 = new Tour({
 //     });
 //   });
 // });
+
+describe('Get /api/user/:id', function() {
+  var token;
+  beforeEach(function(done){
+    User.create(traveler).then(function(){
+      request(app)
+        .post('/auth/local')
+        .send({
+          email: 'traveler@123.com',
+          password: 'password'
+        })
+        .expect(200)
+        .end(function(err,res){
+          token = res.body.token;
+          done();
+        })
+    });
+  });
+
+  afterEach(function(done){
+    User.remove().exec().then(function(){
+      Tour.remove().exec().then(function(){
+        done();
+      });
+    });
+  });
+
+  it(' /username should provide username for requested user', function(done){
+    request(app)
+      .get('/api/users/' + traveler._id + '/username')
+      .expect(200)
+      .set('authorization', 'Bearer ' + token)
+      .end(function(err, res){
+        if(err){
+          console.log(err)
+        }
+        var name = res.body.name
+        name.should.equal('traveler');
+        done();
+      });
+  })
+
+  it(' /username should provide username for requested user', function(done){
+    request(app)
+      .get('/api/users/' + traveler._id + '/username')
+      .set('authorization', 'Bearer ' + token)
+      .expect(200)
+      .end(function(err, res){
+        if(err){
+          console.log(err)
+        }
+      });
+    request(app)
+      .get('/api/users/' + traveler._id + '/trackedtours')
+      .set('authorization', 'Bearer ' + token)
+      .expect(200)
+      .end(function(err, res){
+        if(err){
+          console.log(err)
+        }
+        console.log(res.body);
+        done();
+      });
+  })
+
+  it(' /username should provide username for requested user', function(done){
+    request(app)
+      .get('/api/users/' + traveler._id + '/username')
+      .expect(200)
+      .set('authorization', 'Bearer ' + token)
+      .end(function(err, res){
+        if(err){
+          console.log(err)
+        }
+        var name = res.body.name
+        name.should.equal('traveler');
+        done();
+      });
+  })
+})
+
+
+
+
+
+
+
 describe('PUT /api/users/:id/tours', function() {
   var token;
   beforeEach(function(done){

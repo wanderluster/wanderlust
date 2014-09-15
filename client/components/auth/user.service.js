@@ -20,6 +20,35 @@ angular.module('wanderlustApp')
           id:'me'
         }
       },
+
+      getUsername: {
+        method: 'GET',
+        params: {
+          controller:'username'
+        }
+      },
+
+      getTrackedTours: {
+        method: 'GET',
+        params: {
+          controller:'trackedtours'
+        }
+      },
+
+      getScore: {
+        method: 'GET',
+        params: {
+          controller: 'score'
+        }
+      },
+
+      getCreatedTours: {
+        method: 'GET',
+        params: {
+          controller: 'createdtours'
+        }
+      },
+
       addTour: {
         method: 'PUT',
         params: {

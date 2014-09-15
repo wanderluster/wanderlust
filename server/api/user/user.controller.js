@@ -108,6 +108,14 @@ exports.showTours = function(req, res, next) {
   });
 };
 
+exports.trackedTours = function(req, res, next) {
+  if(!req.user._id.equals(req.params.id)) {return res.send(401);}
+  User.find({_id : req.params.id}, function(err, model){
+    
+    res.json(model.tours);
+  })
+}
+
 exports.addNewTour = function(req, res, next) {
   var userId = req.user._id;
   var tour = req.body.tourObject;
@@ -123,6 +131,14 @@ exports.addNewTour = function(req, res, next) {
       res.json(model);
     }
   );
+}
+
+exports.score = function(req, res, next) {
+  if(!req.user._id.equals(req.params.id)) {return res.send(401);}
+  User.find({_id : req.params.id}, function(err, model){
+    console.log(model);
+    res.json(model);
+  })
 }
 
 
