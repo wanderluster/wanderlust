@@ -11,9 +11,11 @@ angular.module('wanderlustApp')
     };
   })
 
-  .controller('ShowtourCtrl', function ($scope, GoExplore, toursFactory) {
-
-    $scope.glhf = GoExplore.glhf;
+  .controller('ShowtourCtrl', function ($scope, GoExplore, toursFactory, User, Auth) {
+    $scope.glhf = function(){
+      var currentUser = Auth.getCurrentUser();
+      User.addTour({id: currentUser._id}, {'tourObject': this.tours});
+      return GoExplore.glhf();      
+    }; 
     $scope.tours = toursFactory.tours[toursFactory.selectedTour];
-    
   });
