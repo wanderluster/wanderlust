@@ -382,7 +382,7 @@ module.exports = function (grunt) {
       },
       heroku: {
         options: {
-          remote: 'heroku',
+          remote: 'git@heroku.com:wandered.git',
           branch: 'master'
         }
       },
