@@ -91,7 +91,7 @@ describe('Get /api/user/:id', function() {
       });
   })
 
-  it(' /username should provide username for requested user', function(done){
+  it(' /username should provide tours added to the user profile for current user', function(done){
     request(app)
       .get('/api/users/' + traveler._id + '/username')
       .set('authorization', 'Bearer ' + token)
@@ -114,17 +114,29 @@ describe('Get /api/user/:id', function() {
       });
   })
 
-  it(' /username should provide username for requested user', function(done){
+  it(' /createdtours should provide authored tours for current user', function(done){
     request(app)
-      .get('/api/users/' + traveler._id + '/username')
+      .get('/api/users/' + traveler._id + '/createdtours')
       .expect(200)
       .set('authorization', 'Bearer ' + token)
       .end(function(err, res){
         if(err){
           console.log(err)
         }
-        var name = res.body.name
-        name.should.equal('traveler');
+        console.log(res.body);
+        done();
+      });
+  })
+  it(' /score should provide scores for completed tours for current user', function(done){
+    request(app)
+      .get('/api/users/' + traveler._id + '/score')
+      .expect(200)
+      .set('authorization', 'Bearer ' + token)
+      .end(function(err, res){
+        if(err){
+          console.log(err)
+        }
+        console.log(res.body);
         done();
       });
   })

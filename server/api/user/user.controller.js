@@ -119,16 +119,18 @@ exports.trackedTours = function(req, res, next) {
 exports.addNewTour = function(req, res, next) {
   var userId = req.user._id;
   var tour = req.body.tourObject;
+  tour.completed = false;
   User.findByIdAndUpdate(
     userId,
     {$push: {"tours": tour}},
-    {safe: true, upsert: true},
+    {safe: true, upsert: true}, 
     function(err, model){
       if(err){
         console.log(err);
       }
       //response will redirect???
       res.json(model);
+      console.log(model);
     }
   );
 }
@@ -136,8 +138,18 @@ exports.addNewTour = function(req, res, next) {
 exports.score = function(req, res, next) {
   if(!req.user._id.equals(req.params.id)) {return res.send(401);}
   User.find({_id : req.params.id}, function(err, model){
-    console.log(model);
-    res.json(model);
+    var tourList = model.tours;
+    var completedTours = [];
+    tourList.forEach(function(val){
+      // if(val.complete === true){
+        completedTours.push(val);
+      // }
+    })
+    var score = 0;  
+      completedTours.forEach(function(val){
+        score += val.spots.points; 
+      })
+    res.json({'score': score});
   })
 }
 
