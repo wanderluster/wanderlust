@@ -17,7 +17,7 @@
           </div>
           <div class="panel-body">
             <label>Title*</label>
-            <input class="form-control" type="text" ng-model="tour.title"><br>
+            <input class="form-control ng-invalid" type="text" ng-model="tour.title" ng-class="{ 'invalid-input':(tour.title.length < 4) }"><br>
             <label>Description</label>
             <input class="form-control" type="text" ng-model="tour.description"><br>
             <!-- Do this "the angular way" aka put in directive with more options -->
@@ -49,6 +49,8 @@
 
   <!-- Buttons -->
   <div class="row buttons">
+    <div ng-if="isValid === false">Title is required and must be longer than four characters</div>
+    <div ng-if="title">Successfully added tour {{title}}</div>
     <button class="btn btn-default" ng-click="addSpot()">Add Spot</button>
     <button class="btn btn-default" ng-click="createTour()">Done!</button>
   </row>

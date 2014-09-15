@@ -6,6 +6,12 @@ module.exports = function(config) {
     // base path, that will be used to resolve files and exclude
     basePath: '',
 
+    reporters: ['progress', 'coverage'],
+
+       coverageReporter: {
+        type: 'lcovonly', // lcov or lcovonly are required for generating lcov.info files
+        dir: 'coverage/karma'
+    },
     // testing framework to use (jasmine/mocha/qunit/...)
     frameworks: ['jasmine'],
 
@@ -38,6 +44,15 @@ module.exports = function(config) {
       '**/*.jade': 'ng-jade2js',
       '**/*.html': 'html2js',
       '**/*.coffee': 'coffee',
+      'client/app/**/*.controller.js': 'coverage',
+      'client/app/account/account.js': 'coverage',
+      'client/app/admin/admin.js': 'coverage',
+      'client/app/main/main.js': 'coverage',
+      'client/app/tours/tours.js': 'coverage',
+      'client/app/tours/createtour.js': 'coverage',
+      'client/app/tours/showtour.js': 'coverage',
+      'client/app/app.js': 'coverage',
+      'client/components/geo/geo.service.js': 'coverage'
     },
 
     ngHtml2JsPreprocessor: {
@@ -71,11 +86,14 @@ module.exports = function(config) {
     // - Safari (only Mac)
     // - PhantomJS
     // - IE (only Windows)
-    browsers: ['PhantomJS'],
+
+    browsers: ['Firefox'],
+
+
 
 
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit
-    singleRun: false
+    singleRun: true
   });
 };

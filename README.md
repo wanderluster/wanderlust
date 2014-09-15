@@ -1,5 +1,9 @@
 # Wanderlust
 
+[![Build Status](https://travis-ci.org/wanderluster/wanderlust.svg)](https://travis-ci.org/wanderluster/wanderlust)
+
+[![Coverage Status](https://img.shields.io/coveralls/wanderluster/wanderlust.svg)](https://coveralls.io/r/wanderluster/wanderlust)
+
 Curate your city’s hidden gems for others to fall in love with.
 Explore your own beloved city through new eyes.
 

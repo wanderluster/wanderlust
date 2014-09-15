@@ -14,5 +14,5 @@ router.put('/:id/password', auth.isAuthenticated(), controller.changePassword);
 router.get('/:id', auth.isAuthenticated(), controller.show);
 router.post('/', controller.create);
 router.get('/:id/tours', auth.isAuthenticated(), controller.showTours);
-
+router.put('/:id/tours', auth.isAuthenticated(), controller.addNewTour);
 module.exports = router;
